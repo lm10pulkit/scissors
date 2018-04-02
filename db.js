@@ -1,5 +1,5 @@
 var mongoose= require('mongoose');
-mongoose.connect("mongodb://localhost/scissors");
+mongoose.connect(process.env.MONGODB_URI||"mongodb://localhost/scissors");
 var {unvshop,shop}= require('./shop.js');
 var {service}= require('./services.js');
 var package = require('./package.js');
