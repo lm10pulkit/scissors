@@ -1,8 +1,9 @@
 var mongoose= require('mongoose');
 mongoose.connect(process.env.MONGODB_URI||"mongodb://localhost/scissors");
-var {unvshop,shop}= require('./shop.js');
-var {service}= require('./services.js');
-var package = require('./package.js');
+var {unvshop,shop}= require('./schema/shop.js');
+var {service}= require('./schema/services.js');
+var package = require('./schema/package.js');
+var homeservice = require('./schema/homeservice.js');
 var dict={
   "hair":0,
   "face":1,
@@ -166,6 +167,8 @@ var addServiceToShop = function(shopid,serviceid,callback){
 var addPackageToShop= function(shopid,packageid,callback){
 shop.update({_id:shopid},{$push:{packages:packageid}},callback);
 };
+
+
 var findShopById= function(id,callback){
  shop.findOne({_id:id},callback);
 };
@@ -282,23 +285,43 @@ var sdelete= function(shopid,serviceid,callback){
             }
     });
 };
-var clear= function(){
-unvshop.remove().then(function(data){
-	console.log(data);
+// homeserviceadd
+var addHomeServiceToShop = function(shopid,homeserviceid,callback){
+shop.update({_id:shopid},{$push:{homeservices:homeserviceid}},callback);
+};
+var homeServiceAdd = function(data,callback){
+    for(var x =0;x<data.services.length;x++){
+      console.log(data);
+      data.services[x].domain=dict[data.services[x].domain];
+    } 
+    console.log(data);
+    var new_data= new homeservice(data);
+    new_data.save(function(err,data1){
+    if(err)
+    return callback({status:"failed",mssg:"server error"});
+    if(data1){
+      addHomeServicesToShop(data1.shopId,data1._id,function(err,data){
+          if(!err)
+            return callback({status:"success"});
+          else
+            return callback({status:"failed"});        
+      });
+    }
+    else
+     return callback({status:"failed"});
 });
 };
-unvshop.find().then(function(data){
-  console.log(data);
-});
-shop.find().then(function(data){
-  console.log(data);
-});
-package.findOne().then(function(data){
-  console.log(data);
-});
-service.find().then(function(data){
-console.log(data);
-});
+var addServiceToHomeService= function(homserviceid,ser,callback){
+  ser.domain= dict[ser.domain];
+  homeservice.update({_id:homeserviceid},{$push:{services:ser}},callback);
+};
+var removeServiceFromHomeService = function(homeserviceid,serid,callback){
+  homeservice.update({_id:homeserviceid},{$pull :{services:{_id:serid}}},callback);
+};
+/*
+var clear= function(){
+
+
 /*
 shop.remove().then(function(data){
   console.log(data);
@@ -311,6 +334,30 @@ data.forEach(function(item){
 });
 package.remove().then(function(data){
  console.log(data);
+});
+unvshop.find().then(function(data){
+  console.log(data);
+});
+shop.find().then(function(data){
+  console.log(data);
+});
+package.findOne().then(function(data){
+  console.log(data);
+});
+service.find().then(function(data){
+console.log(data);
+});
+shop.remove().then(function(data){
+  console.log(data);
+});
+service.remove().then(function(data){
+  console.log(data);
+});
+package.remove().then(function(data){
+  console.log(data);
+});
+unvshop.remove().then(function(data){
+  console.log(data);
 });
 */
 module.exports={create,checkotp,resendotp,registershop,add,padd,edits,pdelete,sdelete,addservice,

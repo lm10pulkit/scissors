@@ -39,6 +39,9 @@ var shopschema = new schema ({
  packages:[
    String
  ],
+ homeservices:[
+ String
+ ],
  verified:{
  	type:Boolean ,
  	default:false
