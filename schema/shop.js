@@ -24,6 +24,10 @@ var shopschema = new schema ({
  shopType:{
  	type:Number
  },
+ shopSex:{
+ 	type:Number
+ }
+ ,
  shopAddress:{
  	type:String 
  },

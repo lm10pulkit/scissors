@@ -5,18 +5,24 @@ var dict ={
   "both":2
 };
 var func= function(query,content,callback){
-	console.log(query);
-	console.log(content);
    if(query=='registershop'){
-   	console.log(query);
+   	
    	if(content.shopType=='saloon')
    		content.shopType=0;
    	else if(content.shopType=='spa')
    		content.shopType=1;
     else
     	content.shopType=2;
-    var id= content.id;
+    if(content.shopSex=='male')
+      content.shopSex=1;
+    else if(content.shopSex=='female')
+      content.shopSex=2;
+    else
+      content.shopSex=3;
+      console.log(content);
+    var id= content.shopId;
     var data ={
+       shopSex:content.shopSex,
        shopName:content.shopName,
        shopType:content.shopType,
        shopAddress:content.shopAddress,

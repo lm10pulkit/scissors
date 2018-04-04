@@ -18,7 +18,16 @@ var dict1={
   3:"spa",
   4:"nail"
 };
-
+var shoptypeconvert ={
+ "male":1,
+ "female":2,
+ "unisex":3
+};
+var shoptyperevert= {
+1:"male",
+2:"female",
+3:"unisex"
+};
 var create= function(mobile,callback){
 shop.findOne({mobile:mobile},function(err,data){
   if(data)
@@ -36,7 +45,7 @@ shop.findOne({mobile:mobile},function(err,data){
         	return callback({status:'failed',mssg:"server error"});
         else{
         	// send otp
-
+           console.log(data);
         	return callback({status:'send'});
         }
     });
@@ -130,6 +139,15 @@ var add = function(type,data,callback){
           return callback({status:"failed",mssg:"server error"});
    });
 };
+var edits= function(id,price,callback){
+
+     service.update({_id:id},{price:price},function(err,data){
+          if(err)
+            return callback({status:"failed"});
+          else
+            return callback({status:"success"});
+     });
+};
 var padd = function(data,callback){
     for(var x =0;x<data.services.length;x++){
       console.log(data);
@@ -152,14 +170,8 @@ var padd = function(data,callback){
      return callback({status:"failed"});
 });
 };
-var edits= function(id,price,callback){
-
-     service.update({_id:id},{price:price},function(err,data){
-          if(err)
-            return callback({status:"failed"});
-          else
-            return callback({status:"success"});
-     });
+var findServicesInShop = function(ids,callback){
+service.find({_id:{$in :ids}},callback);
 };
 var addServiceToShop = function(shopid,serviceid,callback){
   shop.update({_id:shopid},{$push:{services:serviceid}},callback);
@@ -175,9 +187,7 @@ var findShopById= function(id,callback){
 var findShopByNo= function(no,callback){
  shop.findOne({mobile:no},callback);
 };
-var findServicesInShop = function(ids,callback){
-service.find({_id:{$in :ids}},callback);
-};
+
 var findPackagesInShop = function(ids,callback){
 package.find({_id:{$in :ids}},callback);
 };
@@ -202,26 +212,38 @@ var removePackageFromShop= function(shopid,packageid,callback){
   shop.update({_id:shopid},{$pull :{packages:packageid}},callback);
 };
 var addServiceToPackage= function(packageid,ser,callback){
-  ser.domain= dict[ser.domain];
-  package.update({_id:packageid},{$push:{services:ser}},callback);
+  for(var x =0;x<ser.length;x++)
+    ser[x].domain= dict[ser[x].domain];
+  package.update({_id:packageid},{$pushAll:{services:ser}},callback);
 };
-var addservice = function(packageid,data,callback){
-     console.log(data);
-     console.log(packageid);
-   addServiceToPackage(packageid,data,function(err,data){
-        if(err)
-          return callback({status:"failed"});
-        else{
-          if(data.n==1)
-            return callback({status:"success"});
-          else
-            return callback({status:"failed"});
-        }
-   });
+var editPriceOfPackage = function(packageid,price,callback){
+     package.update({_id:packageid},{price:price},callback);
+};
+// can be improved from o(n2) to o(n1)
+var filteringService=function(data,ser){
+var data1=[];
+for(var x =0;x<data.length;x++){
+   for(var y =0;y<ser.length;y++){
+    if(data[x]._id.toString()==ser[y].toString()){
+      console.log("equal");
+      data1.push(data[x]);
+    }
+   }
+}
+return data1;
 };
 var removeServiceFromPackage = function(packageid,serid,callback){
-  package.update({_id:packageid},{$pull :{services:{_id:serid}}},callback);
+
+  package.findOne({_id:packageid},function(err,data){
+         console.log(data);
+        var data1 =filteringService(data.services,serid);
+        console.log(serid);
+        console.log(data);
+        console.log(data1);
+        package.update({_id:packageid},{$pullAll:{services:data1}},callback);
+  });
 };
+
 var pdelete= function(shopid,packageid,callback){
      removePackage(packageid,function(err,data){
            
@@ -285,9 +307,15 @@ var sdelete= function(shopid,serviceid,callback){
             }
     });
 };
-// homeserviceadd
+// homeserviceadd addHomeServiceToShop,homeServiceAdd,addServiceToHomeService,removeServiceFromHomeService
+var editPriceOfHomeService = function(homeserviceid,price,callback){
+     homeservice.update({_id:homeserviceid},{price:price},callback);
+};
 var addHomeServiceToShop = function(shopid,homeserviceid,callback){
 shop.update({_id:shopid},{$push:{homeservices:homeserviceid}},callback);
+};
+var removeHomeServiceFromShop= function(shopid,homeserviceid,callback){
+  shop.update({_id:shopid},{$pull :{homeservices:homeserviceid}},callback);
 };
 var homeServiceAdd = function(data,callback){
     for(var x =0;x<data.services.length;x++){
@@ -300,7 +328,7 @@ var homeServiceAdd = function(data,callback){
     if(err)
     return callback({status:"failed",mssg:"server error"});
     if(data1){
-      addHomeServicesToShop(data1.shopId,data1._id,function(err,data){
+      addHomeServiceToShop(data1.shopId,data1._id,function(err,data){
           if(!err)
             return callback({status:"success"});
           else
@@ -311,13 +339,54 @@ var homeServiceAdd = function(data,callback){
      return callback({status:"failed"});
 });
 };
-var addServiceToHomeService= function(homserviceid,ser,callback){
-  ser.domain= dict[ser.domain];
-  homeservice.update({_id:homeserviceid},{$push:{services:ser}},callback);
+var addServiceToHomeService= function(homeserviceid,ser,callback){
+  for(var x =0;x<ser.length;x++)
+    ser[x].domain= dict[ser[x].domain];
+    console.log(homeserviceid);
+  homeservice.update({_id:homeserviceid},{$pushAll:{services:ser}},callback);
 };
 var removeServiceFromHomeService = function(homeserviceid,serid,callback){
-  homeservice.update({_id:homeserviceid},{$pull :{services:{_id:serid}}},callback);
+    homeservice.findOne({_id:homeserviceid},function(err,data){
+        var data1 =filteringService(data.services,serid);     
+        homeservice.update({_id:homeserviceid},{$pullAll:{services:data1}},callback);
+  });
 };
+var removeHomeService=function(id,callback){
+    homeservice.remove({_id:id},callback);
+};
+var HomeServiceDelete= function(shopid,homeserviceid,callback){
+     removeHomeService(homeserviceid,function(err,data){
+           
+            if(err)
+              return callback({status:"failed"});
+            else
+            {
+              if(data.n==1)
+              {
+                
+                removeHomeServiceFromShop(shopid,homeserviceid.toString(),function(err,data){
+                    
+                   if(err){
+                     return callback({status:"failed"});
+                   }
+                   else{
+                    console.log(data);
+                       if(data.n==1)
+                        return callback({status:"success"});
+                        else
+                        return callback({status:"failed"});  
+                   }
+                });
+              }
+              else
+                return callback({status:"failed"});
+            }
+     });
+};
+
+homeservice.find().then(function(data){
+  console.log(data[2]);
+});
 /*
 var clear= function(){
 
@@ -359,6 +428,12 @@ package.remove().then(function(data){
 unvshop.remove().then(function(data){
   console.log(data);
 });
-*/
-module.exports={create,checkotp,resendotp,registershop,add,padd,edits,pdelete,sdelete,addservice,
-removeServiceFromPackage,mypackages,myservices};
+
+unvshop.remove().then(function(data){
+  console.log(data);
+ });
+*/  
+module.exports={create,checkotp,resendotp,registershop,add,padd,edits,pdelete,sdelete,addServiceToPackage,editPriceOfPackage,
+removeServiceFromPackage,HomeServiceDelete,
+mypackages,myservices,addHomeServiceToShop,homeServiceAdd,addServiceToHomeService,removeServiceFromHomeService,
+editPriceOfHomeService};
