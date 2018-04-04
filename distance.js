@@ -15,6 +15,16 @@ function getdistance(lat1,lon1,lat2,lon2) {
 function deg2rad(deg) {
   return deg * (Math.PI/180)
 }
+var sort = function(data,lat1,long1){
+var l = new linkedlist();
+for(var x =0;x<data.length;x++){
+  var d = getdistance(data[x].lat,data[x].long,lat1,long1);
+  l.add(d,x);
+}
+var data1 = l.trav(data);
+return data1;
+};
+
 var linkedlist= function(){
   var length=0;
   var head=null;
@@ -61,21 +71,10 @@ var linkedlist= function(){
      return obj1;
   }
 };
-var l = new linkedlist ();
-  var obj=[{lon:12},{lon:11},{lon:19},{lon:24},{lon:50},{lon:100}];
-l.add(2,1);
-l.add(5,2);
-l.add(3,0);
-l.add(100,4);
-l.add(-1,5);
-l.add(1,3);
-var mas=l.trav(obj);
-console.log(mas);
-var calculate = function(obj,lat1,long1)
-{
-    
-};
-module.exports = getdistance;
+ var data = [{lat:12,long:13},{lat:12.1112,long:13},{lat:0,long:1},{lat:120,long:13},{lat:120,long:130}];
+ var val=sort(data,12,13);
+ console.log(val);
+module.exports = sort;
 
 /*  d = getdistance(12,13,12.001,13.001);
 console.log(d);
@@ -92,4 +91,3 @@ var da = dist(["aa","aaaa","a","a","a","aa","aaaa","a","a","a","aa","aaaa","a","
 var fa =dist(da);
 console.log(fa);
 */
-var obj=
