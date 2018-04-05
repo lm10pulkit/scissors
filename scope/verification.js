@@ -1,4 +1,4 @@
-var {create,checkotp,resendotp}= require('./../db.js');
+ var {create,checkotp,resendotp}= require('./../db.js');
 var func = function(query,content,callback){
       if(query=="sendOTP")
       {

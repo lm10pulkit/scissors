@@ -4,6 +4,8 @@ var {unvshop,shop}= require('./schema/shop.js');
 var {service}= require('./schema/services.js');
 var package = require('./schema/package.js');
 var homeservice = require('./schema/homeservice.js');
+var sendsms = require('./otp.js');
+
 var dict={
   "hair":0,
   "face":1,
@@ -39,16 +41,27 @@ shop.findOne({mobile:mobile},function(err,data){
     var otp = Math.floor(100000 + Math.random() * 900000);
     var time = new Date().getTime();
     var data1 = {mobile:mobile,otp,time};
+    var mssg = 'your otp for shop verification is '+ otp;
+    sendsms(mobile,mssg,function(status){
+    if(status.status)
+    {    
     var new_data = new unvshop(data1);
     new_data.save(function(err,data){
         if(err)
         	return callback({status:'failed',mssg:"server error"});
-        else{
+        else
+        {
         	// send otp
            console.log(data);
         	return callback({status:'send'});
         }
     });
+    }
+    else
+    {
+     return callback({status:"failed",mssg:"invalid mobile no"});  
+    }
+  });
   }
 });
 };
@@ -94,8 +107,14 @@ var resendotp = function(mobile,callback){
            else{
            	//sendotp
            	if(data.n==1){
-           	console.log(data);
-           return callback({status:"success",mssg:"otp resend successful"});
+           	var mssg = 'your otp for shop verification is '+otp;
+            sendsms(mobile,mssg,function(status){
+              if(status.status)
+             return callback({status:"success",mssg:"otp resend successful"});
+              else
+              return callback({status:"failure",mssg:"invalid mobile no"});  
+            });
+          
            }
            else{
            	return callback({status:"error",mssg:"no does not exsist"});
@@ -384,8 +403,8 @@ var HomeServiceDelete= function(shopid,homeserviceid,callback){
      });
 };
 
-homeservice.find().then(function(data){
-  console.log(data[2]);
+shop.find().then(function(data){
+  console.log(data);
 });
 /*
 var clear= function(){

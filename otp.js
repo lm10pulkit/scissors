@@ -1,14 +1,9 @@
 var msg91 = require('msg91-sms');
-var authkey='206854A1h65e1P7V5abe6fad';
+var authkey='207673APLfV448z2pm5ac59c37';
  
-//for single number 
-var number='9958005393';
- 
-//message 
-var message='your idea scissors has been selected for the startup meet';
  
 //Sender ID 
-var senderid='lm10pulkit';
+var senderid='startu';
  
 //Route 
 var route=4;
@@ -18,9 +13,16 @@ var dialcode='91';
  
  
 //send to single number 
- 
-msg91.sendOne(authkey,number,message,senderid,route,dialcode,function(response){
- 
+
+var sendmessage= function(no,mssg,callback){
+
+msg91.sendOne(authkey,no,mssg,senderid,route,dialcode,function(response){
+console.log(response); 
 //Returns Message ID, If Sent Successfully or the appropriate Error Message 
-console.log(response);
+if(response=='Please Enter valid mobile no')
+	return callback({status:false});
+else
+	return callback({status:true});
 });
+} ;
+module.exports = sendmessage;
