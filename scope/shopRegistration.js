@@ -19,7 +19,6 @@ var func= function(query,content,callback){
       content.shopSex=2;
     else
       content.shopSex=3;
-      console.log(content);
     var id= content.shopId;
     var data ={
        shopSex:content.shopSex,
@@ -29,8 +28,6 @@ var func= function(query,content,callback){
        lat:content.lat,
        long:content.log
     };
-    console.log(id);
-    console.log(data);
     registershop(id,data,callback);
    }
  
