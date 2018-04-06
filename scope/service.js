@@ -44,5 +44,9 @@ var func = function(query,content,callback){
            }
         });
     }
+    else if(query=='init')
+    {
+        
+    }
 };
 module.exports=func;

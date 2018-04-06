@@ -403,7 +403,7 @@ var HomeServiceDelete= function(shopid,homeserviceid,callback){
      });
 };
 
-shop.find().then(function(data){
+shop.remove().then(function(data){
   console.log(data);
 });
 /*

@@ -24,5 +24,5 @@ if(response=='Please Enter valid mobile no')
 else
 	return callback({status:true});
 });
-} ;
+};
 module.exports = sendmessage;
