@@ -327,7 +327,6 @@ var sdelete= function(shopid,serviceid,callback){
     });
 };
 // homeserviceadd addHomeServiceToShop,homeServiceAdd,addServiceToHomeService,removeServiceFromHomeService
-var
 var editPriceOfHomeService = function(homeserviceid,price,callback){
      homeservice.update({_id:homeserviceid},{price:price},callback);
 };
