@@ -134,6 +134,7 @@ var registershop = function(id,data,callback){
    });
 };
 var add = function(type,data,callback){
+   console.log(type);
    data.domain= dict[type];
     console.log(data);
    var new_service = new service(data);
@@ -404,7 +405,7 @@ var HomeServiceDelete= function(shopid,homeserviceid,callback){
 };
 var myhomeservices = function(shopid,callback){
   findShopById(shopid,function(err,data){
-     fin
+     
   });
 };
 shop.find().then(function(data){
