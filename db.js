@@ -10,15 +10,13 @@ var dict={
   "hair":0,
   "face":1,
   "body":2,
-  "spa":3,
-  "nail":4
+  "nail":3
 };
 var dict1={
   0:"hair",
   1:"face",
   2:"body",
-  3:"spa",
-  4:"nail"
+  3:"nail"
 };
 var shoptypeconvert ={
  "male":1,
@@ -403,7 +401,7 @@ var HomeServiceDelete= function(shopid,homeserviceid,callback){
      });
 };
 
-shop.remove().then(function(data){
+shop.find().then(function(data){
   console.log(data);
 });
 /*

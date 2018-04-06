@@ -27,7 +27,7 @@ var func= function(query,content,callback){
        shopType:content.shopType,
        shopAddress:content.shopAddress,
        lat:content.lat,
-       long:content.long
+       long:content.log
     };
     console.log(id);
     console.log(data);
