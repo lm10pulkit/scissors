@@ -11,6 +11,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.post('/dataBaseModify',function(req,res){
+  console.log(req.body);
+  console.log(req.body.scope);
 	var scope= req.body.scope;
 	var query= req.body.query;
 	var content= req.body.content;
