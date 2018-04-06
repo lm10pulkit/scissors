@@ -8,8 +8,6 @@ var func = function(query,content,callback){
          price:content.price,
          shopId:content.shopId
        };
-       console.log(type);
-       console.log(data);
        add(type,data,function(data1){
           callback(data1);
        });

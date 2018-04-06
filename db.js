@@ -135,16 +135,18 @@ var registershop = function(id,data,callback){
 };
 var add = function(type,data,callback){
    data.domain= dict[type];
-   var data1=data;
+    console.log(data);
    var new_service = new service(data);
    new_service.save(function(err,data){
         if(err)
-        {
+        { 
+          console.log(' in the err');
+          console.log(err);
           return callback({status:"failed",mssg:"server error"});
         }
         if(data){
           console.log(data);
-          addServiceToShop(data1.shopId,data._id,function(err,data){
+          addServiceToShop(data.shopId,data._id,function(err,data){
                      if(!err)
                     return callback({status:"success",mssg:"service added"});
                      else
@@ -325,6 +327,7 @@ var sdelete= function(shopid,serviceid,callback){
     });
 };
 // homeserviceadd addHomeServiceToShop,homeServiceAdd,addServiceToHomeService,removeServiceFromHomeService
+var
 var editPriceOfHomeService = function(homeserviceid,price,callback){
      homeservice.update({_id:homeserviceid},{price:price},callback);
 };
@@ -400,7 +403,11 @@ var HomeServiceDelete= function(shopid,homeserviceid,callback){
             }
      });
 };
-
+var myhomeservices = function(shopid,callback){
+  findShopById(shopid,function(err,data){
+     fin
+  });
+};
 shop.find().then(function(data){
   console.log(data);
 });
