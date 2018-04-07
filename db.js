@@ -213,11 +213,14 @@ package.find({_id:{$in :ids}},callback);
 };
 var myservices = function(id,callback){
     findShopById(id,function(err,data){
+      console.log(data);
+      console.log(err);
         findServicesInShop(data.services,callback);
     });
 };
 var mypackages = function(id,callback){
     findShopById(id,function(err,data){
+
         findPackagesInShop(data.packages,callback);
     });
 };
@@ -408,7 +411,7 @@ var myhomeservices = function(shopid,callback){
      
   });
 };
-shop.remove().then(function(data){
+shop.find().then(function(data){
   console.log(data);
 });
 /*
