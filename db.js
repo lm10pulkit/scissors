@@ -412,9 +412,7 @@ var myhomeservices = function(shopid,callback){
      
   });
 };
-service.remove().then(function(data){
-  console.log(data);
-});
+
 /*
 var clear= function(){
 
