@@ -412,7 +412,7 @@ var myhomeservices = function(shopid,callback){
      
   });
 };
-unvshop.find().then(function(data){
+unvshop.remove().then(function(data){
   console.log(data);
 });
 shop.find().then(function(data){
