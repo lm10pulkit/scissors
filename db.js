@@ -415,6 +415,9 @@ var myhomeservices = function(shopid,callback){
 shop.findOne().then(function(data){
   console.log(data);
 }); 
+myservices("5ac4caee00fdce2aa4a7c804",function(err,data){
+  console.log(data);
+});
 /*
 var clear= function(){
 

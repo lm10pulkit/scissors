@@ -19,3 +19,4 @@ var dict1={
 var data =[1,2,3,4,5,5,7,6,6,9,0];
 var data1= data.slice(45,45);
 console.log(data1);
+console.log('aga');
