@@ -412,12 +412,7 @@ var myhomeservices = function(shopid,callback){
      
   });
 };
-shop.findOne().then(function(data){
-  if(!data)
-    console.log('shop mein kuch hai hi nahi');
-  console.log(data);
-}); 
-myservices("5ac4caee00fdce2aa4a7c804",function(err,data){
+service.remove().then(function(data){
   console.log(data);
 });
 /*
