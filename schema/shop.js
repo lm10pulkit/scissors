@@ -3,20 +3,24 @@ var schema = require("mongoose").Schema;
 var unvshopschema  = new schema ({
 mobile:{
 	type:Number,
-	required:true
+	required:true,
+	unique:true
 },
 otp:{
-	type:Number
+	type:Number,
+	required:true
 },
 time :{
-	type:Number
+	type:Number,
+	required:true
 }
 });
 var unvshop = mongoose.model('unvshop',unvshopschema);
 var shopschema = new schema ({
  mobile:{
  	type:Number,
- 	required:true
+ 	required:true,
+ 	unique:true
  },
  shopName:{
  	type:String 

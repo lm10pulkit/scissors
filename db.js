@@ -40,18 +40,20 @@ shop.findOne({mobile:mobile},function(err,data){
     var time = new Date().getTime();
     var data1 = {mobile:mobile,otp,time};
     var mssg = 'your otp for shop verification is '+ otp;
-    sendsms(mobile,mssg,function(status){
+    unvshop.findOne({mobile:mobile},function(err,data){
+       if(!data){
+        sendsms(mobile,mssg,function(status){
     if(status.status)
     {    
     var new_data = new unvshop(data1);
     new_data.save(function(err,data){
         if(err)
-        	return callback({status:'failed',mssg:"server error"});
+          return callback({status:'failed',mssg:"server error"});
         else
         {
-        	// send otp
+          // send otp
            console.log(data);
-        	return callback({status:'send'});
+          return callback({status:'send'});
         }
     });
     }
@@ -60,9 +62,46 @@ shop.findOne({mobile:mobile},function(err,data){
      return callback({status:"failed",mssg:"invalid mobile no"});  
     }
   });
+      }
+     else
+     {
+      shop.update({mobile:mobile},{otp:otp,time:time},function(err,data){
+         if(data.n==1)
+         {
+          sendsms(mobile,mssg,function(status){
+              return callback({status:"send"});
+          });
+         }
+         else
+          return callback({status:"failed",mssg:"no error"});
+      });
+     } 
+    });
   }
 });
 };
+/*
+sendsms(mobile,mssg,function(status){
+    if(status.status)
+    {    
+    var new_data = new unvshop(data1);
+    new_data.save(function(err,data){
+        if(err)
+          return callback({status:'failed',mssg:"server error"});
+        else
+        {
+          // send otp
+           console.log(data);
+          return callback({status:'send'});
+        }
+    });
+    }
+    else
+    {
+     return callback({status:"failed",mssg:"invalid mobile no"});  
+    }
+  });
+*/
 var checkotp= function(mobile,otp,callback){
   unvshop.findOne({mobile:mobile},function(err,data){
         if(err||(!data))
@@ -412,6 +451,9 @@ var myhomeservices = function(shopid,callback){
      
   });
 };
+shop.find().then(function(data){
+  console.log(data);
+});
 /*
 var clear= function(){
 
