@@ -14,12 +14,16 @@ app.post('/dataBaseModify',function(req,res){
 	var scope= req.body.scope;
 	var query= req.body.query;
 	var content= req.body.content;
+  var requester = req.body.requester;
+  var requestno = req.body.requestNo;
   if(scope=='verification')
   {
 
   	verification(query,content,function(data){
   		data.query=query;
   		data.scope=scope;
+      data.requester = requester;
+      data.requestno = requestno;
        res.send(data);
   	});
   }
@@ -29,6 +33,8 @@ app.post('/dataBaseModify',function(req,res){
    shopRegistration(query,content,function(data){
    	data.query=query;
   		data.scope=scope;
+      data.requester = requester;
+      data.requestno = requestno;
       res.send(data);
    });   
   }
@@ -38,6 +44,8 @@ app.post('/dataBaseModify',function(req,res){
   	service(query,content,function(data){
   		data.query=query;
   		data.scope=scope;
+      data.requester = requester;
+      data.requestno = requestno;
       res.send(data);
   	});
   }
@@ -46,6 +54,8 @@ app.post('/dataBaseModify',function(req,res){
        package(query,content,function(data){
        	data.query=query;
   		data.scope=scope;
+      data.requester = requester;
+      data.requestno = requestno;
         res.send(data);
      });
   }
@@ -53,6 +63,8 @@ app.post('/dataBaseModify',function(req,res){
   	  homeservice(query,content,function(data){
         data.query=query;
   		data.scope=scope;
+      data.requester = requester;
+      data.requestno = requestno;
         res.send(data);   
   	  });
   }
