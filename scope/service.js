@@ -31,6 +31,7 @@ var func = function(query,content,callback){
     else if(query=='myservices')
     {
         var shopid = content.shopId;
+        console.log(shopid);
         myservices(shopid,function(err,data){
            if(err)
             return callback({status:"failed",services:null});

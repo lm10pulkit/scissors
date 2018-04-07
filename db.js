@@ -212,6 +212,7 @@ var findPackagesInShop = function(ids,callback){
 package.find({_id:{$in :ids}},callback);
 };
 var myservices = function(id,callback){
+   console.log(id);
     findShopById(id,function(err,data){
       console.log(data);
       console.log(err);
