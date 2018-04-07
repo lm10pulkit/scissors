@@ -1,4 +1,4 @@
-var {padd,pdelete,addServiceToPackage,removeServiceFromPackage,mypackage,editPriceOfPackage}= require('./../db.js');
+var {padd,pdelete,addServiceToPackage,removeServiceFromPackage,mypackages,editPriceOfPackage}= require('./../db.js');
 var func= function(query,content,callback){
 	if(query=='add'){
         padd(content,function(data){
