@@ -16,3 +16,6 @@ var dict1={
   3:"spa",
   4:"other"
 };
+var data =[1,2,3,4,5,5,7,6,6,9,0];
+var data1= data.slice(45,45);
+console.log(data1);

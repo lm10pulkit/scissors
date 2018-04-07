@@ -73,6 +73,9 @@ var func = function(query,content,callback){
 
         });
   }
+  else if(query=='myhomeservices'){
+          
+  }
   else
   {
     return {mssg:"wrong query"};
