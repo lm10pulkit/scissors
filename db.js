@@ -412,9 +412,9 @@ var myhomeservices = function(shopid,callback){
      
   });
 };
-shop.find().then(function(data){
+shop.findOne().then(function(data){
   console.log(data);
-});
+}); 
 /*
 var clear= function(){
 

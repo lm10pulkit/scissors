@@ -40,7 +40,7 @@ app.post('/dataBaseModify',function(req,res){
   }
   else if(scope=='service')
   {
-  	
+  	   console.log(req.body);
   	service(query,content,function(data){
   		data.query=query;
   		data.scope=scope;
