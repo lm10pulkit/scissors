@@ -458,7 +458,7 @@ var myhomeservices = function(shopid,callback){
      
   });
 };
-shop.remove({mobile:9958005393}).then(function(data){
+shop.find({mobile:9958005393}).then(function(data){
   console.log(data);
 });
 /*
