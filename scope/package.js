@@ -18,7 +18,9 @@ var func= function(query,content,callback){
         var removals = content.removals;
         var additions = content.additions;
         var packageid = content.packageId;
-        console.log(content);
+        var removal =[];
+        for(var x =0;x<removals.length;x++)
+          removal.push(remvals[x]._id);
         editPriceOfPackage(packageid,price,function(err,data){
           if(err)
             return callback({status:"failed"});
@@ -27,15 +29,13 @@ var func= function(query,content,callback){
             if(additions)
             {
               addServiceToPackage(packageid,additions,function(err,data){
-                console.log(err);
-                console.log(data);
                if(err)
                return callback({status:"failed", mssg:"error1"});
-               else if(data)
+               else if(data.n==1)
                {
-                   if(removals)
+                   if(removal)
                    {
-                     removeServiceFromPackage(packageid,removals,function(err,data){
+                     removeServiceFromPackage(packageid,removal,function(err,data){
                         console.log(err);
                         console.log(data);                     
                        if(err)
