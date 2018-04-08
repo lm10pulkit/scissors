@@ -32,8 +32,8 @@ var create= function(mobile,callback){
 shop.findOne({mobile:mobile},function(err,data){
   if(data)
   {
-    return callback({status:"failed",mssg:"no already in use"});
-  }
+   return callback({status:"failed",mssg:"no already registered"});   
+  } 
   else
   {
     var otp = Math.floor(100000 + Math.random() * 900000);
@@ -69,7 +69,7 @@ shop.findOne({mobile:mobile},function(err,data){
          if(data.n==1)
          {
           sendsms(mobile,mssg,function(status){
-              return callback({status:"send"});
+              return callback({status:"send"},);
           });
          }
          else
@@ -455,7 +455,7 @@ var myhomeservices = function(shopid,callback){
      
   });
 };
-package.find().then(function(data){
+shop.find().then(function(data){
   for(var x =0;x<data.length;x++)
     console.log(data[x]);
 });
