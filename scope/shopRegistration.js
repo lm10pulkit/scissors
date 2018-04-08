@@ -6,7 +6,7 @@ var dict ={
 };
 var func= function(query,content,callback){
    if(query=='registershop'){
-   	
+      console.log(content);   	
    	if(content.shopType=='saloon')
    		content.shopType=0;
    	else if(content.shopType=='spa')

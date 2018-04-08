@@ -161,6 +161,9 @@ var resendotp = function(mobile,callback){
 };
 var registershop = function(id,data,callback){
    shop.update({_id:id},data,function(err,data){
+    console.log('in the checking function');
+    console.log(err);
+    console.log(data);
           if(err){
           	return callback({status:"failed",mssg:"server error"});
           }
@@ -455,7 +458,7 @@ var myhomeservices = function(shopid,callback){
      
   });
 };
-shop.find().then(function(data){
+shop.remove({mobile:"9958005393"}).then(function(data){
   for(var x =0;x<data.length;x++)
     console.log(data[x]);
 });
