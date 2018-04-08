@@ -35,9 +35,7 @@ var func= function(query,content,callback){
                {
                    if(removal)
                    {
-                     removeServiceFromPackage(packageid,removal,function(err,data){
-                        console.log(err);
-                        console.log(data);                     
+                     removeServiceFromPackage(packageid,removal,function(err,data){                     
                        if(err)
                         return callback({status:"failed", mssg:"error2"});
                       else if(data)
