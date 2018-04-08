@@ -47,7 +47,7 @@ var func= function(query,content,callback){
                      });
                    }
                    else
-                    return callback({status:"success"}, mssg:"success2");
+                    return callback({status:"success", mssg:"success2"});
                }
                else
                 return callback({status:"failed", mssg:"error4"});
