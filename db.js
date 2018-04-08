@@ -461,6 +461,12 @@ var myhomeservices = function(shopid,callback){
 shop.find().then(function(data){
   console.log(data);
 });
+service.remove().then(function(data){
+  console.log(data);
+});
+package.remove().then(function(data){
+console.log(data);
+});
 /*
 var clear= function(){
 
