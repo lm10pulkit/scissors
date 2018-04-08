@@ -1,4 +1,4 @@
-var {add,edits,sdelete,myservices}= require('./../db.js');
+var {add,edits,sdelete,myservices,getService}= require('./../db.js');
 var func = function(query,content,callback){
     if(query=='add')
     {
@@ -13,7 +13,7 @@ var func = function(query,content,callback){
        });
     }
     else if(query=="edit"){
-        var type=content.domain;
+      
         var id = content.serviceId;
         var price = content.newPrice;
         console.log(content);
@@ -43,6 +43,17 @@ var func = function(query,content,callback){
               return callback({status:"failed",services:null});
            }
         });
+    }
+    else if(query=='single'){
+      var serviceid = content.serviceId;
+      getService(serviceid,function(err,data){
+         if(err)
+          return callback({status:"failed",mssg:"server error"});
+         if(data)
+          return callback({status:"success",service:data});
+         else
+          return callback({status:"failed",mssg:"invalid id"});
+      });
     }
     else if(query=='init')
     {

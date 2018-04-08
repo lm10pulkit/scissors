@@ -238,8 +238,12 @@ var addServiceToShop = function(shopid,serviceid,callback){
 var addPackageToShop= function(shopid,packageid,callback){
 shop.update({_id:shopid},{$push:{packages:packageid}},callback);
 };
-
-
+var getService = function(serviceid,callback){
+service.findOne({_id:serviceid},callback);
+};
+var getPackage = function(packageid,callback){
+package.find({_id:packageid},callback);
+};
 var findShopById= function(id,callback){
  shop.findOne({_id:id},callback);
 };
@@ -451,7 +455,7 @@ var myhomeservices = function(shopid,callback){
      
   });
 };
-shop.find().then(function(data){
+package.find().then(function(data){
   console.log(data);
 });
 /*
@@ -503,4 +507,4 @@ unvshop.remove().then(function(data){
 module.exports={create,checkotp,resendotp,registershop,add,padd,edits,pdelete,sdelete,addServiceToPackage,editPriceOfPackage,
 removeServiceFromPackage,HomeServiceDelete,
 mypackages,myservices,addHomeServiceToShop,homeServiceAdd,addServiceToHomeService,removeServiceFromHomeService,
-editPriceOfHomeService};
+editPriceOfHomeService,getService,getPackage};

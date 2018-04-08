@@ -53,9 +53,9 @@ app.post('/dataBaseModify',function(req,res){
   {
        package(query,content,function(data){
        	data.query=query;
-  		data.scope=scope;
-      data.requester = requester;
-      data.requestno = requestno;
+  	  	data.scope=scope;
+        data.requester = requester;
+        data.requestno = requestno;
         res.send(data);
      });
   }

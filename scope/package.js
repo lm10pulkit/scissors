@@ -1,4 +1,4 @@
-var {padd,pdelete,addServiceToPackage,removeServiceFromPackage,mypackages,editPriceOfPackage}= require('./../db.js');
+var {padd,pdelete,addServiceToPackage,removeServiceFromPackage,mypackages,editPriceOfPackage,getPackage}= require('./../db.js');
 var func= function(query,content,callback){
 	if(query=='add'){
         padd(content,function(data){
@@ -29,7 +29,7 @@ var func= function(query,content,callback){
                 console.log(err);
                 console.log(data);
                if(err)
-               return callback({status:"failed"});
+               return callback({status:"failed", mssg:"error1"});
                else if(data)
                {
                    if(removals)
@@ -38,26 +38,26 @@ var func= function(query,content,callback){
                         console.log(err);
                         console.log(data);                     
                        if(err)
-                        return callback({status:"failed"});
+                        return callback({status:"failed", mssg:"error2"});
                       else if(data)
-                        return callback({status:"success"});
+                        return callback({status:"success", mssg:"success3"});
                       else
-                        return callback({status:"failed"});
+                        return callback({status:"failed",, mssg:"error3"});
                      });
                    }
                    else
-                    return callback({status:"success"});
+                    return callback({status:"success"}, mssg:"success2");
                }
                else
-                return callback({status:"failed"});
+                return callback({status:"failed", mssg:"error4"});
 
               });
             }
             else
-              return callback({status:"success"});
+              return callback({status:"success", mssg:"success1"});
           }
           else
-            return callback({status:"failed"});
+            return callback({status:"failed", mssg:"error5"});
 
         });
     }
@@ -74,6 +74,17 @@ var func= function(query,content,callback){
            		return callback({status:"failed",packages:null});
            }
         });
+    }
+    else if(query=='single'){
+      var packageid= content.packageId;
+       getPackage(packageid,function(err,data){
+           if(err)
+          return callback({status:"failed",mssg:"server error"});
+         if(data)
+          return callback({status:"success",package:data});
+         else
+          return callback({status:"failed",mssg:"invalid id"});
+       });
     } 
     else{
       return callback({mssg:"wrong query"});
