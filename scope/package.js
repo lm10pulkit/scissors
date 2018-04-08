@@ -20,7 +20,7 @@ var func= function(query,content,callback){
         var packageid = content.packageId;
         var removal =[];
         for(var x =0;x<removals.length;x++)
-          removal.push(remvals[x]._id);
+          removal.push(removals[x]._id);
         editPriceOfPackage(packageid,price,function(err,data){
           if(err)
             return callback({status:"failed"});
