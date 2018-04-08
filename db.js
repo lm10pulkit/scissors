@@ -456,7 +456,8 @@ var myhomeservices = function(shopid,callback){
   });
 };
 package.find().then(function(data){
-  console.log(data);
+  for(var x =0;x<data.length;x++)
+    console.log(data[x]);
 });
 /*
 var clear= function(){
