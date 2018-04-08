@@ -18,6 +18,7 @@ var func= function(query,content,callback){
         var removals = content.removals;
         var additions = content.additions;
         var packageid = content.packageId;
+        console.log(content);
         editPriceOfPackage(packageid,price,function(err,data){
           if(err)
             return callback({status:"failed"});
@@ -42,7 +43,7 @@ var func= function(query,content,callback){
                       else if(data)
                         return callback({status:"success", mssg:"success3"});
                       else
-                        return callback({status:"failed",, mssg:"error3"});
+                        return callback({status:"failed", mssg:"error3"});
                      });
                    }
                    else
