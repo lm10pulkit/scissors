@@ -458,9 +458,8 @@ var myhomeservices = function(shopid,callback){
      
   });
 };
-shop.remove({mobile:"9958005393"}).then(function(data){
-  for(var x =0;x<data.length;x++)
-    console.log(data[x]);
+shop.remove({mobile:9958005393}).then(function(data){
+  console.log(data);
 });
 /*
 var clear= function(){
