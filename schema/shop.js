@@ -32,6 +32,22 @@ var shopschema = new schema ({
  	type:Number
  }
  ,
+ password:{
+    type:String 
+ }
+ ,
+ ac:{
+ 	type:Boolean 
+ }
+ ,
+ ownerName:{
+ 	type:String 
+ }
+ ,
+ ownerNumber:{
+    type:Number
+ }
+ ,
  shopAddress:{
  	type:String 
  },
