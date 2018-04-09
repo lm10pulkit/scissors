@@ -1,5 +1,4 @@
  var {create,checkotp,resendotp,savePassword}= require('./../db.js');
- var {hash,compare}= require('./../hashing/hashing.js');
 var func = function(query,content,callback){
       if(query=="sendOTP")
       {
@@ -14,8 +13,7 @@ var func = function(query,content,callback){
       else if(query=="setPassword"){
         var password = content.password;
         var shopid  = content.shopId;
-        hash(password,function(err,hash){
-           savePassword(hash,function(err,data){
+           savePassword(password,function(err,data){
                if(err)
                   return callback({status:"failed",mssg:"server error"});
                if(data.n==1)
@@ -23,7 +21,7 @@ var func = function(query,content,callback){
                else
                   return callback({status:"failed",mssg:"uncertainity"});           
            });
-        });
+        
       }
       else if(query=='login'){
          var gh=0;
