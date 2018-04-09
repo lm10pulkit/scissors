@@ -44,10 +44,6 @@ var shopschema = new schema ({
  	type:String 
  }
  ,
- ownerNumber:{
-    type:Number
- }
- ,
  shopAddress:{
  	type:String 
  },

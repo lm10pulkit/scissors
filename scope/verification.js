@@ -1,4 +1,4 @@
- var {create,checkotp,resendotp,savePassword}= require('./../db.js');
+ var {create,checkotp,resendotp,savePassword,findShopByNo,addOwnerName}= require('./../db.js');
 var func = function(query,content,callback){
       if(query=="sendOTP")
       {
@@ -23,8 +23,33 @@ var func = function(query,content,callback){
            });
         
       }
-      else if(query=='login'){
-         var gh=0;
-      }
+      else if(query=='login')
+      {
+         var password= content.password;
+         var mobile= content.mobile;
+         findShopByNo(mobile,function(err,data){
+            if(err)
+               return callback({status:"error",error:"server error",shopId:null});
+            if(!data)
+            {
+              return callback({status:"failed",shopId:null});
+            }
+            else
+            {
+               if(data.password==password)
+               {
+                  var undone= 'nothing';
+                  if(!data.lat)
+                     undone='shopRegistered';
+                  else if(data.ownerName);
+                     undone='owner';
+                  return callback({status:"success",undone:undone,shopId:data._id});
+               }
+               else
+                  return callback({status:"failed",mssg:"password did not match",shopId:null});
+            } 
+         });
+      }      
 };
+
 module.exports=func;

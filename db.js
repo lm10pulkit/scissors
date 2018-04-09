@@ -178,6 +178,9 @@ var registershop = function(id,data,callback){
           }
    });
 };
+var addOwnerName = function(shopid,ownerName,callback){
+shop.update({_id:shopid},{ownerName:ownerName},callback);
+};
 var add = function(type,data,callback){
    console.log(type);
    data.domain= dict[type];
@@ -456,20 +459,13 @@ var HomeServiceDelete= function(shopid,homeserviceid,callback){
             }
      });
 };
+
 var myhomeservices = function(shopid,callback){
   findShopById(shopid,function(err,data){
      
   });
 };
-shop.remove().then(function(data){
-  console.log(data);
-});
-package.remove().then(function(data){
-  console.log(data);
-});
-service.remove().then(function(data){
-  console.log(data);
-});
+
 /*
 var clear= function(){
 
@@ -519,4 +515,4 @@ unvshop.remove().then(function(data){
 module.exports={create,checkotp,resendotp,registershop,add,padd,edits,pdelete,sdelete,addServiceToPackage,editPriceOfPackage,
 removeServiceFromPackage,HomeServiceDelete,
 mypackages,myservices,addHomeServiceToShop,homeServiceAdd,addServiceToHomeService,removeServiceFromHomeService,
-editPriceOfHomeService,getService,getPackage};
+editPriceOfHomeService,getService,getPackage,savePassword,findShopByNo,addOwnerName};
