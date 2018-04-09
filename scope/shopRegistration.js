@@ -7,15 +7,15 @@ var dict ={
 var func= function(query,content,callback){
    if(query=='registershop'){
       console.log(content);   	
-   	if(content.shopType=='saloon')
+   	if(content.shopType.toLowerCase()=='saloon')
    		content.shopType=0;
-   	else if(content.shopType=='spa')
+   	else if(content.shopType.toLowerCase()=='spa')
    		content.shopType=1;
     else
     	content.shopType=2;
-    if(content.shopSex=='male')
+    if(content.shopSex.toLowerCase()=='male')
       content.shopSex=1;
-    else if(content.shopSex=='female')
+    else if(content.shopSex.toLowerCase()=='female')
       content.shopSex=2;
     else
       content.shopSex=3;
