@@ -65,7 +65,7 @@ shop.findOne({mobile:mobile},function(err,data){
       }
      else
      {
-      shop.update({mobile:mobile},{otp:otp,time:time},function(err,data){
+      unvshop.update({mobile:mobile},{otp:otp,time:time},function(err,data){
          if(data.n==1)
          {
           sendsms(mobile,mssg,function(status){
