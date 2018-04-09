@@ -131,6 +131,9 @@ var checkotp= function(mobile,otp,callback){
         }
   });
 };
+var savePassword = function(shopid,password,callback){
+    shop.update({_id:shopid},{password:password},callback);
+};
 var createshop= function(mobile,callback){
     var new_data = new shop({mobile});
     new_data.save(callback);
