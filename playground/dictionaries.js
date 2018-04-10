@@ -21,3 +21,4 @@ var data1= data.slice(45,45);
 console.log(data1);
 console.log('aga');
 console.log('idle1');
+console.log('messi');

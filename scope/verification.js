@@ -17,7 +17,7 @@ var func = function(query,content,callback){
                if(err)
                   return callback({status:"failed",mssg:"server error"});
                if(data.n==1)
-                  return callback({status:"success",mssg:"added password"});
+                  return callback({status:"success",mssg:"added password",shopId:shopid});
                else
                   return callback({status:"failed",mssg:"uncertainity"});           
            });
