@@ -13,7 +13,7 @@ var func = function(query,content,callback){
       else if(query=="setPassword"){
         var password = content.password;
         var shopid  = content.shopId;
-           savePassword(password,function(err,data){
+           savePassword(shopid,password,function(err,data){
                if(err)
                   return callback({status:"failed",mssg:"server error"});
                if(data.n==1)
