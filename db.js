@@ -35,7 +35,7 @@ shop.findOne({mobile:mobile},function(err,data){
     if(data.password)
    return callback({status:"failed",mssg:"no already registered"});
     else
-    {
+    { 
        shop.remove({mobile:mobile},function(err,data){
             var otp = Math.floor(100000 + Math.random() * 900000);
     var time = new Date().getTime();
@@ -512,7 +512,10 @@ var myhomeservices = function(shopid,callback){
      
   });
 };
-shop.remove().then(function(data){
+shop.find().then(function(data){
+  console.log(data);
+});
+unvshop.find().then(function(data){
   console.log(data);
 });
 //shop.remove().then(function(data){
