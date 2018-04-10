@@ -25,7 +25,11 @@ var func = function(query,content,callback){
       }
       else if(query=='check'){
          var shopid= content.shopId;
+         console.log(query);
+         console.log(content);
          findShopById(shopid,function(err,data){
+             console.log(data);
+             console.log(err);
               if(err)
                return {status:"failed",mssg:"invalid id"};
             if(data)
@@ -36,7 +40,6 @@ var func = function(query,content,callback){
               else if(!data.ownerName)
               undone ='owner';
               return {status:"success",undone:undone,mssg:"successful"};
-
             }
             else
                return {status:"failed",mssg:"uncertainity"};
