@@ -516,6 +516,6 @@ unvshop.remove().then(function(data){
  });
 */  
 module.exports={create,checkotp,resendotp,registershop,add,padd,edits,pdelete,sdelete,addServiceToPackage,editPriceOfPackage,
-removeServiceFromPackage,HomeServiceDelete,findShopById
+removeServiceFromPackage,HomeServiceDelete,findShopById,
 mypackages,myservices,addHomeServiceToShop,homeServiceAdd,addServiceToHomeService,removeServiceFromHomeService,
 editPriceOfHomeService,getService,getPackage,savePassword,findShopByNo,addOwnerName};
