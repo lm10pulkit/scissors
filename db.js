@@ -512,10 +512,10 @@ var myhomeservices = function(shopid,callback){
      
   });
 };
-shop.find().then(function(data){
+shop.remove().then(function(data){
   console.log(data);
 });
-unvshop.find().then(function(data){
+unvshop.remove().then(function(data){
   console.log(data);
 });
 //shop.remove().then(function(data){
