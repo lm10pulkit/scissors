@@ -31,7 +31,7 @@ var func = function(query,content,callback){
              console.log(data);
              console.log(err);
               if(err)
-               return {status:"failed",mssg:"invalid id"};
+               return callback({status:"failed",mssg:"invalid id"});
             if(data)
             {
               var undone= 'nothing';
@@ -40,10 +40,10 @@ var func = function(query,content,callback){
               else if(!data.ownerName)
               undone ='owner';
               console.log(undone);
-              return {status:"success",undone:undone,mssg:"successful"};
+              return callback({status:"success",undone:undone,mssg:"successful"});
             }
             else
-               return {status:"failed",mssg:"uncertainity"};
+               return callback({status:"failed",mssg:"uncertainity"});
          }); 
       }
       else if(query=='login')
