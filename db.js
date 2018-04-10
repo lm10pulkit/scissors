@@ -465,7 +465,9 @@ var myhomeservices = function(shopid,callback){
      
   });
 };
-
+pacage.remove().then(function(data){
+  console.log(data);
+});
 //shop.remove().then(function(data){
 //  console.log(data);
 //});
