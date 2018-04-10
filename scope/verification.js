@@ -64,8 +64,9 @@ var func = function(query,content,callback){
                   var undone= 'nothing';
                   if(!data.lat)
                      undone='shopRegistered';
-                  else if(data.ownerName);
+                  else if(!data.ownerName);
                      undone='owner';
+                     console.log(undone);
                   return callback({status:"success",undone:undone,shopId:data._id});
                }
                else
