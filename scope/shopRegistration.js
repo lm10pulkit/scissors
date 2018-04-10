@@ -31,7 +31,7 @@ var func= function(query,content,callback){
     };
     registershop(id,data,callback);
    }
-   else if(query=='setOwnerName'){
+   else if(query=='setOwner'){
          var ownerName= content.owner;
          var shopId=content.shopId;
           addOwnerName(shopId,ownerName,function(err,data){
