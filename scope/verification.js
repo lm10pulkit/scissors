@@ -39,6 +39,7 @@ var func = function(query,content,callback){
               undone= 'shopRegistration';
               else if(!data.ownerName)
               undone ='owner';
+              console.log(undone);
               return {status:"success",undone:undone,mssg:"successful"};
             }
             else
