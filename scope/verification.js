@@ -1,4 +1,4 @@
- var {create,checkotp,resendotp,savePassword,findShopByNo,addOwnerName}= require('./../db.js');
+ var {create,checkotp,resendotp,savePassword,findShopByNo,addOwnerName,findShopById}= require('./../db.js');
 var func = function(query,content,callback){
       if(query=="sendOTP")
       {
@@ -22,6 +22,25 @@ var func = function(query,content,callback){
                   return callback({status:"failed",mssg:"uncertainity"});           
            });
         
+      }
+      else if(query=='check'){
+         var shopid= content.shopId;
+         findShopById(shopid,function(err,data){
+              if(err)
+               return {status:"failed",mssg:"invalid id"};
+            if(data)
+            {
+              var undone= 'nothing';
+              if(!data.lat)
+              undone= 'shopRegistration';
+              else if(!data.ownerName)
+              undone ='owner';
+              return {status:"success",undone:undone,mssg:"successful"};
+
+            }
+            else
+               return {status:"failed",mssg:"uncertainity"};
+         }); 
       }
       else if(query=='login')
       {
