@@ -160,7 +160,7 @@ var checkotp= function(mobile,otp,callback){
                 if(otp==data.otp){
                 	createshop(mobile,function(err,data){
                         console.log(data);
-                        return callback({status:"success",mssg:"successful verification",shopid:data._id});
+                        return callback({status:"success",mssg:"successful verification",shopId:data._id});
                 	});
                 	unvshop.remove({mobile:mobile},function(err,data){
                       console.log(data);
