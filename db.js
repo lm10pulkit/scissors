@@ -32,7 +32,54 @@ var create= function(mobile,callback){
 shop.findOne({mobile:mobile},function(err,data){
   if(data)
   {
-   return callback({status:"failed",mssg:"no already registered"});   
+    if(data.password)
+   return callback({status:"failed",mssg:"no already registered"});
+    else
+    {
+       shop.remove({mobile:mobile},function(err,data){
+            var otp = Math.floor(100000 + Math.random() * 900000);
+    var time = new Date().getTime();
+    var data1 = {mobile:mobile,otp,time};
+    var mssg = 'your otp for shop verification is '+ otp;
+    unvshop.findOne({mobile:mobile},function(err,data){
+       if(!data){
+        sendsms(mobile,mssg,function(status){
+    if(status.status)
+    {    
+    var new_data = new unvshop(data1);
+    new_data.save(function(err,data){
+        if(err)
+          return callback({status:'failed',mssg:"server error"});
+        else
+        {
+          // send otp
+           console.log(data);
+          return callback({status:'send'});
+        }
+    });
+    }
+    else
+    {
+     return callback({status:"failed",mssg:"invalid mobile no"});  
+    }
+  });
+      }
+     else
+     {
+      unvshop.update({mobile:mobile},{otp:otp,time:time},function(err,data){
+         if(data.n==1)
+         {
+          sendsms(mobile,mssg,function(status){
+              return callback({status:"send"},);
+          });
+         }
+         else
+          return callback({status:"failed",mssg:"no error"});
+      });
+     } 
+    });
+       });
+    }   
   } 
   else
   {
