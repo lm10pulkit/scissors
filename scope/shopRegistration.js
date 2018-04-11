@@ -17,7 +17,7 @@ var func= function(query,content,callback){
       content.shopSex=1;
     else if(content.shopSex.toLowerCase()=='female')
       content.shopSex=2;
-    else
+    else if(content.shopSex.toLowerCase()=='unisex')
       content.shopSex=3;
     var id= content.shopId;
     var data ={

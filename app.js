@@ -5,6 +5,7 @@ var shopRegistration= require('./scope/shopRegistration');
 var service = require('./scope/service.js');
 var package = require("./scope/package.js");
 var homeservice = require('./scope/homeservice.js');
+var shopProfile = require('./scope/shopProfile.js');
 const port = process.env.PORT||8080;
 var app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -67,6 +68,15 @@ app.post('/dataBaseModify',function(req,res){
       data.requestno = requestno;
         res.send(data);   
   	  });
+  }
+  else if(scope=='shopProfile'){
+       shopProfile(query,content,function(data){
+        data.query=query;
+      data.scope=scope;
+      data.requester = requester;
+      data.requestno = requestno;
+        res.send(data);   
+      });
   }
   else{
   	res.send({mssg:"wrong scope work harder"});
