@@ -21,7 +21,6 @@ var func= function(query,content,callback){
       content.shopSex=3;
     var id= content.shopId;
     var data ={
-       ac: content.ac,
        shopSex:content.shopSex,
        shopName:content.shopName,
        shopType:content.shopType,

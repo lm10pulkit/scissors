@@ -513,7 +513,8 @@ var myhomeservices = function(shopid,callback){
   });
 };
 shop.find().then(function(data){
-  console.log(data);
+  for(var x =0;x<data.length;x++)
+     console.log(data[x]);
 });
 unvshop.find().then(function(data){
   console.log(data);
