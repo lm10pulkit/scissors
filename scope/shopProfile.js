@@ -3,7 +3,6 @@ var func = function(query,content,callback){
 if(query=='getOwnerDetails')
 {
    var id = content.shopId;
-    console.log(content);
    findShopById(id,function(err,data){
      if(data)
      {
@@ -18,9 +17,7 @@ if(query=='getOwnerDetails')
 else if(query=='getShopDetails'){
 	var id = content.shopId;
    findShopById(id,function(err,data){
-   	   console.log(content);
       if(data){
-      	 console.log(data);
       	if(data.shopSex==1)
    	   	data.shopSex='male';
    	   else if(data.shopSex==2)
@@ -33,7 +30,7 @@ else if(query=='getShopDetails'){
    	   	data.shopType='spa';
    	   else
    	   	data.shopType='both';
-      	return callback({status:"success",shopName :data.shopName,shopAddress:data.shopAddress,shopType:data.shopType,
+       callback({status:"success",shopName :data.shopName,shopAddress:data.shopAddress,shopType:data.shopType,
          shopSex:data.shopSex});
       }	
       else
