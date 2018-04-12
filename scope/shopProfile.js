@@ -18,18 +18,20 @@ else if(query=='getShopDetails'){
 	var id = content.shopId;
    findShopById(id,function(err,data){
       if(data){
+      	 var shopSex=data.shopSex;
+      	 var shopType=data.shopType;
       	if(data.shopSex==1)
-   	   	data.shopSex='male';
+   	   	shopSex='male';
    	   else if(data.shopSex==2)
-   	   	data.shopSex='female';
+   	   	shopSex='female';
    	   else
-   	   	data.shopSex='unisex';
+   	   	shopSex='unisex';
    	   if(data.shopType==0)
-   	   	data.shopType='saloon';
+   	   	shopType='saloon';
    	   else if(data.shopType==1)
-   	   	data.shopType='spa';
+   	   	shopType='spa';
    	   else
-   	   	data.shopType='both';
+   	   	shopType='both';
        callback({status:"success",shopName :data.shopName,shopAddress:data.shopAddress,shopType:data.shopType,
          shopSex:data.shopSex});
       }	
