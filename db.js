@@ -525,7 +525,7 @@ shop.find().then(function(data){
   for(var x =0;x<data.length;x++)
      console.log(data[x]);
 });
-unvshop.find().then(function(data){
+unvshop.remove().then(function(data){
   console.log(data);
 });
 //shop.remove().then(function(data){
