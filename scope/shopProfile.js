@@ -32,7 +32,7 @@ else if(query=='getShopDetails'){
    	   	shopType='spa';
    	   else
    	   	shopType='both';
-       callback({status:"success",shopName :shopName,shopAddress:shopAddress,shopType:shopType,
+       callback({status:"success",shopName :data.shopName,shopAddress:data.shopAddress,shopType:shopType,
          shopSex:shopSex});
       }	
       else
