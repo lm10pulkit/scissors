@@ -519,6 +519,9 @@ shop.find().then(function(data){
 unvshop.find().then(function(data){
   console.log(data);
 });
+findShopById("5accc80c16f3f400142bdad2",function(err,data){
+console.log(data);
+});
 //shop.remove().then(function(data){
 //  console.log(data);
 //});
