@@ -3,6 +3,7 @@ var func = function(query,content,callback){
 if(query=='getOwnerDetails')
 {
    var id = content.shopId;
+    console.log(content);
    findShopById(id,function(err,data){
      if(data)
      {
