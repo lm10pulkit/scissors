@@ -17,7 +17,7 @@ if(query=='getOwnerDetails')
 }
 else if(query=='getShopDetails'){
    findShopById(id,function(err,data){
-   	   
+   	   console.log(content);
       if(data){
       	 console.log(data);
       	if(data.shopSex==1)
