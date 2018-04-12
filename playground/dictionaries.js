@@ -22,4 +22,3 @@ console.log(data1);
 console.log('aga');
 console.log('idle1');
 console.log('messi');
-console.log('messi');
