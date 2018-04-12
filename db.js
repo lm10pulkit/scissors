@@ -528,9 +528,6 @@ shop.find().then(function(data){
 unvshop.find().then(function(data){
   console.log(data);
 });
-findShopById("5accc80c16f3f400142bdad2",function(err,data){
-console.log(data);
-});
 //shop.remove().then(function(data){
 //  console.log(data);
 //});
@@ -580,15 +577,6 @@ unvshop.remove().then(function(data){
   console.log(data);
  });
 */  
-package.remove().then(function(data){
-  console.log(data);
-});
-service.remove().then(function(data){
-  console.log(data);
-});
-shop.remove().then(function(data){
-  console.log(data);
-});
 module.exports={create,checkotp,resendotp,registershop,add,padd,edits,pdelete,sdelete,addServiceToPackage,editPriceOfPackage,
 removeServiceFromPackage,HomeServiceDelete,findShopById,
 mypackages,myservices,addHomeServiceToShop,homeServiceAdd,addServiceToHomeService,removeServiceFromHomeService,
