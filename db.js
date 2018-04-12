@@ -150,32 +150,40 @@ sendsms(mobile,mssg,function(status){
   });
 */
 var checkotp= function(mobile,otp,callback){
-  unvshop.findOne({mobile:mobile},function(err,data){
+  findShopByNo(mobile,function(err,data){
+    if(data){
+     return callback({status:"success",mssg :"already in verified"});
+    }
+    else
+    {
+     
+           unvshop.findOne({mobile:mobile},function(err,data){
         if(err||(!data))
-        	return callback({status:"failed",mssg:"server error"});
+          return callback({status:"failed",mssg:"server error"});
         else{
-        	var new_t= new Date().getTime();
-        	if(new_t-data.time<=300000)
-        	{
+          var new_t= new Date().getTime();
+          if(new_t-data.time<=300000)
+          {
                 if(otp==data.otp){
-                	createshop(mobile,function(err,data){
+                  createshop(mobile,function(err,data){
                         console.log(data);
                         return callback({status:"success",mssg:"successful verification",shopId:data._id});
-                	});
-                	unvshop.remove({mobile:mobile},function(err,data){
+                  });
+                  unvshop.remove({mobile:mobile},function(err,data){
                       console.log(data);
-                	});
-                	
+                  });
+                  
                 }
                 else
-                	return callback({status:"failed",mssg:"otp did not match"});
-        	}
-        	else
-        	{
+                  return callback({status:"failed",mssg:"otp did not match"});
+          }
+          else
+          {
               return callback({status:"failed",mssg:"timeout"});
-        	}
+          }
 
         }
+    }
   });
 };
 var savePassword = function(shopid,password,callback){
