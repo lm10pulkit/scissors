@@ -32,8 +32,8 @@ else if(query=='getShopDetails'){
    	   	shopType='spa';
    	   else
    	   	shopType='both';
-       callback({status:"success",shopName :data.shopName,shopAddress:data.shopAddress,shopType:data.shopType,
-         shopSex:data.shopSex});
+       callback({status:"success",shopName :shopName,shopAddress:shopAddress,shopType:shopType,
+         shopSex:shopSex});
       }	
       else
       	return callback({status:'failed',mssg:"invalid shopid"});
