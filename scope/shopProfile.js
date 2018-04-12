@@ -6,11 +6,11 @@ if(query=='getOwnerDetails')
    findShopById(id,function(err,data){
      if(data.n==1)
      {
-        return res.send({ status:"success" , owner:data.ownerName });
+        return callback({ status:"success" , owner:data.ownerName });
      }
      else
      {
-       return res.send({status:"failed" , mssg:"invalid shopid"});
+       return callback({status:"failed" , mssg:"invalid shopid"});
      }
    });
 }
@@ -29,10 +29,10 @@ else if(query=='getShopDetails'){
    	   else
    	   	data.shopType='both';
       if(data.n==1)
-      	return res.send({status:"success",shopName :data.shopName,shopAddress:data.shopAddress,shopType:data.shopType,
+      	return callback({status:"success",shopName :data.shopName,shopAddress:data.shopAddress,shopType:data.shopType,
          shopSex:data.shopSex});
       else
-      	return res.send({status:'success',mssg:"invalid shopid"});
+      	return callback({status:'failed',mssg:"invalid shopid"});
    });
 }
 };
