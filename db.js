@@ -183,8 +183,9 @@ var checkotp= function(mobile,otp,callback){
           }
 
         }
-    }
-  });
+    });
+  }
+});
 };
 var savePassword = function(shopid,password,callback){
     shop.update({_id:shopid},{password:password},callback);
