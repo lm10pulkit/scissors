@@ -580,6 +580,15 @@ unvshop.remove().then(function(data){
   console.log(data);
  });
 */  
+package.remove().then(function(data){
+  console.log(data);
+});
+service.remove().then(function(data){
+  console.log(data);
+});
+shop.remove().then(function(data){
+  console.log(data);
+});
 module.exports={create,checkotp,resendotp,registershop,add,padd,edits,pdelete,sdelete,addServiceToPackage,editPriceOfPackage,
 removeServiceFromPackage,HomeServiceDelete,findShopById,
 mypackages,myservices,addHomeServiceToShop,homeServiceAdd,addServiceToHomeService,removeServiceFromHomeService,
