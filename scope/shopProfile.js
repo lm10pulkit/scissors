@@ -4,7 +4,7 @@ if(query=='getOwnerDetails')
 {
    var id = content.shopId;
    findShopById(id,function(err,data){
-     if(data.n==1)
+     if(data)
      {
         return callback({ status:"success" , owner:data.ownerName });
      }
@@ -16,7 +16,9 @@ if(query=='getOwnerDetails')
 }
 else if(query=='getShopDetails'){
    findShopById(id,function(err,data){
-   	   if(data.shopSex==1)
+   	   
+      if(data){
+      	if(data.shopSex==1)
    	   	data.shopSex='male';
    	   else if(data.shopSex==2)
    	   	data.shopSex='female';
@@ -28,9 +30,9 @@ else if(query=='getShopDetails'){
    	   	data.shopType='spa';
    	   else
    	   	data.shopType='both';
-      if(data.n==1)
       	return callback({status:"success",shopName :data.shopName,shopAddress:data.shopAddress,shopType:data.shopType,
          shopSex:data.shopSex});
+      }	
       else
       	return callback({status:'failed',mssg:"invalid shopid"});
    });
