@@ -16,6 +16,7 @@ if(query=='getOwnerDetails')
    });
 }
 else if(query=='getShopDetails'){
+	var id = content.shopId;
    findShopById(id,function(err,data){
    	   console.log(content);
       if(data){
