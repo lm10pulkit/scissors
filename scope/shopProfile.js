@@ -18,6 +18,7 @@ else if(query=='getShopDetails'){
    findShopById(id,function(err,data){
    	   
       if(data){
+      	 console.log(data);
       	if(data.shopSex==1)
    	   	data.shopSex='male';
    	   else if(data.shopSex==2)
