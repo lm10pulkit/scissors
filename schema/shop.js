@@ -62,6 +62,8 @@ var shopschema = new schema ({
  homeservices:[
  String
  ],
+ photos:[String]
+ ,
  verified:{
  	type:Boolean ,
  	default:false

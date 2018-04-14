@@ -1,4 +1,5 @@
-var {findShopById}= require('./../db.js');
+var {findShopById,addImageToShop,removeImageFromShop}= require('./../db.js');
+var {encodeimage,deleteimage,uploadimage}= require('./../decodestring.js');
 var func = function(query,content,callback){
 if(query=='getOwnerDetails')
 {
@@ -38,6 +39,30 @@ else if(query=='getShopDetails'){
       else
       	return callback({status:'failed',mssg:"invalid shopid"});
    });
+}
+else if(query=='addImage')
+{
+var imgstr= content.images;
+var shopid = content.shopId;
+var name = 'cal'+ new Date().getTime()+'.jpeg';
+encodeimage(imgstr,name,function(status){
+   if(status.status){
+      uploadimage(name,function(data){
+        addImageToShop(shopid,data.secure_url,function(err,data){
+          if(err)
+            console.log(err);
+          if(data.n==1)
+            return callback({status:"success",imageUrl:data.secure_url});
+          else
+            return callback({status:"failed",mssg:"error"});
+        });
+        deleteimage(name);
+      });
+   }
+   else{
+    return callback({status:'failed'});
+   }
+});
 }
 };
 module.exports = func;

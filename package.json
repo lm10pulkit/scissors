@@ -14,7 +14,11 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "cloudinary": "^1.11.0",
+    "connect-mongo": "^2.0.1",
+    "cookie-parser": "^1.4.3",
     "express": "^4.16.3",
+    "express-session": "^1.15.6",
     "mongoose": "^5.0.13",
     "msg91-sms": "^1.0.1",
     "request": "^2.85.0"

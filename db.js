@@ -515,7 +515,12 @@ var HomeServiceDelete= function(shopid,homeserviceid,callback){
             }
      });
 };
-
+var addImageToShop = function(shopId,imageUrl,callback){
+   shop.update({_id:shopId},{$push :{photos:imageUrl}},callback);
+};
+var removeImageFromShop = function(shopId,imageUrl,callback){
+    shop.update({_id:shopId},{$pull :{photos:imageUrl}},callback);
+};
 var myhomeservices = function(shopid,callback){
   findShopById(shopid,function(err,data){
      
@@ -580,6 +585,6 @@ unvshop.remove().then(function(data){
  });
 */  
 module.exports={create,checkotp,resendotp,registershop,add,padd,edits,pdelete,sdelete,addServiceToPackage,editPriceOfPackage,
-removeServiceFromPackage,HomeServiceDelete,findShopById,
+removeServiceFromPackage,HomeServiceDelete,findShopById,addImageToShop,removeImageFromShop,
 mypackages,myservices,addHomeServiceToShop,homeServiceAdd,addServiceToHomeService,removeServiceFromHomeService,
 editPriceOfHomeService,getService,getPackage,savePassword,findShopByNo,addOwnerName};

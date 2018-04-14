@@ -1,4 +1,5 @@
 var express= require('express');
+var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var verification= require('./scope/verification.js');
 var shopRegistration= require('./scope/shopRegistration');
@@ -8,8 +9,22 @@ var homeservice = require('./scope/homeservice.js');
 var shopProfile = require('./scope/shopProfile.js');
 const port = process.env.PORT||8080;
 var app = express();
+var cookieparser= require('cookie-parser');
+var session = require('express-session');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+var MongoStore = require('connect-mongo')(session);
+// middleware for cookie parser
+app.use(cookieparser());
+
+//middleware for session
+app.use(session(
+  {
+    secret:'secret',
+      saveUninitialized:true,
+    resave:true,
+    store : new MongoStore({mongooseConnection:mongoose.connection})
+  }));
 
 app.post('/dataBaseModify',function(req,res){
 	var scope= req.body.scope;
