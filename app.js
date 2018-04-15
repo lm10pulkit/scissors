@@ -12,7 +12,7 @@ var app = express();
 var cookieparser= require('cookie-parser');
 var session = require('express-session');
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit:"50mb"}));
 var MongoStore = require('connect-mongo')(session);
 // middleware for cookie parser
 app.use(cookieparser());
