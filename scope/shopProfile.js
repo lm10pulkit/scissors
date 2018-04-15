@@ -47,12 +47,12 @@ var shopid = content.shopId;
 var name = 'cal'+ new Date().getTime()+'.jpeg';
 encodeimage(imgstr,name,function(status){
    if(status.status){
-      uploadimage(name,function(data){
-        addImageToShop(shopid,data.secure_url,function(data){
+      uploadimage(name,function(data1){
+        addImageToShop(shopid,data.secure_url,function(err,data){
           if(err)
             console.log(err);
           if(data.n==1)
-            return callback({status:"success",imageUrl:data.secure_url});
+            return callback({status:"success",imageUrl:data1.secure_url});
           else
             return callback({status:"failed",mssg:"error"});
         });
