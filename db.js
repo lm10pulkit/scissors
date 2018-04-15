@@ -535,6 +535,12 @@ unvshop.find().then(function(data){
   console.log('yo');
   console.log(data);
 });
+shop.remove().then(function(data){
+  console.log(data);
+});
+unvshop.remove().then(function(data){
+  console.log(data);
+});
 //shop.remove().then(function(data){
 //  console.log(data);
 //});
@@ -584,6 +590,7 @@ unvshop.remove().then(function(data){
   console.log(data);
  });
 */  
+
 module.exports={create,checkotp,resendotp,registershop,add,padd,edits,pdelete,sdelete,addServiceToPackage,editPriceOfPackage,
 removeServiceFromPackage,HomeServiceDelete,findShopById,addImageToShop,removeImageFromShop,
 mypackages,myservices,addHomeServiceToShop,homeServiceAdd,addServiceToHomeService,removeServiceFromHomeService,
