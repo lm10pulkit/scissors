@@ -48,7 +48,7 @@ var name = 'cal'+ new Date().getTime()+'.jpeg';
 encodeimage(imgstr,name,function(status){
    if(status.status){
       uploadimage(name,function(data){
-        addImageToShop(shopid,data.secure_url,function(err,data){
+        addImageToShop(shopid,data.secure_url,function(data){
           if(err)
             console.log(err);
           if(data.n==1)
@@ -59,8 +59,9 @@ encodeimage(imgstr,name,function(status){
         deleteimage(name);
       });
    }
-   else{
-    return callback({status:'failed'});
+   else
+   {
+     return callback({status:'failed'});
    }
 });
 }
