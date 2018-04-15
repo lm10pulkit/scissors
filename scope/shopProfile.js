@@ -48,7 +48,7 @@ var name = 'cal'+ new Date().getTime()+'.jpeg';
 encodeimage(imgstr,name,function(status){
    if(status.status){
       uploadimage(name,function(data1){
-        addImageToShop(shopid,data.secure_url,function(err,data){
+        addImageToShop(shopid,data1.secure_url,function(err,data){
           if(err)
             console.log(err);
           if(data.n==1)
