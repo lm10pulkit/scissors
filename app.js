@@ -11,7 +11,7 @@ const port = process.env.PORT||8080;
 var app = express();
 var cookieparser= require('cookie-parser');
 var session = require('express-session');
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({limit:"50mb" ,extended: false }));
 app.use(bodyParser.json({limit:"50mb"}));
 var MongoStore = require('connect-mongo')(session);
 // middleware for cookie parser
