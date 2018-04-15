@@ -32,9 +32,9 @@ else if(query=='getShopDetails'){
    	   else if(data.shopType==1)
    	   	shopType='spa';
    	   else
-   	   	shopType='both';
+   	   	shopType='salon+spa';
        callback({status:"success",shopName :data.shopName,shopAddress:data.shopAddress,shopType:shopType,
-         shopSex:shopSex});
+         shopSex:shopSex,owner:data.ownerName,images:data.photos});
       }	
       else
       	return callback({status:'failed',mssg:"invalid shopid"});
