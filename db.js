@@ -526,21 +526,6 @@ var myhomeservices = function(shopid,callback){
      
   });
 };
-shop.find().then(function(data){
-  console.log(1);
-  console.log(2);
-  console.log(data);
-});
-unvshop.find().then(function(data){
-  console.log('yo');
-  console.log(data);
-});
-shop.remove().then(function(data){
-  console.log(data);
-});
-unvshop.remove().then(function(data){
-  console.log(data);
-});
 //shop.remove().then(function(data){
 //  console.log(data);
 //});
